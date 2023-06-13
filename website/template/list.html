@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>s3browser</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+        }
+        input[type=text] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+        }
+        h1 {
+            /* font-size: 48px; */
+            color: #333;
+            text-align: center;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 16px;
+            border-bottom: 1px solid #ddd;
+        }
+        li:last-child {
+            border-bottom: none;
+        }
+        .list-item {
+            flex-basis: 25%;
+        }
+    </style>
+</head>
+<body>
+
+<h1>
+    s3browser
+</h1>
+
+<div class="header">
+    <form action="/" method="get">
+        <input type="text" id="myInput" {{if .inputPath}} value="{{.inputPath}}" {{end}} placeholder="示例: s3://demo/testdirs/" name="path">
+    </form>
+</div>
+
+<ul>
+    {{range .Data}}
+    <li>
+        {{range $key, $value := .}}
+        <div class="list-item">
+            {{if eq $key "name"}}
+                <a href="/?path=s3://{{$value}}" target="_blank">{{$value}}</a>
+            {{else}}
+                {{$value}}
+            {{end}}
+        </div>
+        {{end}}
+    </li>
+    {{end}}
+</ul>
+
+</body>
+</html>

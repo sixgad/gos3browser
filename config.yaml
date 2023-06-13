@@ -1,0 +1,12 @@
+# 后端配置
+gin:
+  host: "127.0.0.1"
+  port: 8080
+  # debug release
+  app_mode: "release"
+# s3配置
+s3:
+  aws_access_key_id: ""
+  aws_secret_access_key: ""
+  endpoint: ""
+
